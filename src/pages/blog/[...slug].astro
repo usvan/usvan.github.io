@@ -22,7 +22,7 @@ const hasMath = /\$\$[\s\S]*?\$\$|\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]|\$[^$\n]+\$|
 	body,
 );
 
-// 计算字数和阅读时间
+// Calculate word count and reading time.
 const wordCount = body ? body.replace(/[#*`~>\[\]\(\)\-\!\s]/g, '').length : 0;
 const readingTime = Math.ceil(wordCount / 400);
 ---

@@ -83,7 +83,7 @@ function createDiagram(pre: HTMLPreElement, index: number) {
 
 	const header = document.createElement('figcaption');
 	header.className = 'mermaid-diagram__header';
-	header.innerHTML = '<span class="mermaid-diagram__status" aria-live="polite">正在渲染…</span>';
+	header.innerHTML = '<span class="mermaid-diagram__status" aria-live="polite">Rendering...</span>';
 
 	const canvas = document.createElement('div');
 	canvas.className = 'mermaid-diagram__canvas';
@@ -123,7 +123,7 @@ async function renderFigure(mermaid: MermaidApi, figure: HTMLElement, generation
 		if (generation !== renderGeneration || !figure.isConnected) return;
 		figure.classList.add('mermaid-diagram--error');
 		figure.classList.remove('mermaid-diagram--portrait');
-		status.textContent = '图表语法有误';
+		status.textContent = 'Invalid diagram syntax';
 		canvas.replaceChildren();
 		const message = document.createElement('pre');
 		message.className = 'mermaid-diagram__error';

@@ -42,10 +42,10 @@ export class SearchIndexRepository {
 
 		this.pending = fetch(this.endpoint, { headers: { Accept: 'application/json' } })
 			.then(async (response) => {
-				if (!response.ok) throw new Error(`搜索索引加载失败（${response.status}）`);
+							if (!response.ok) throw new Error(`Failed to load search index (${response.status})`);
 				const payload: unknown = await response.json();
 				if (!Array.isArray(payload) || !payload.every(isSearchDocument)) {
-					throw new Error('搜索索引格式无效');
+									throw new Error('Invalid search index format');
 				}
 				this.documents = payload;
 				return payload;

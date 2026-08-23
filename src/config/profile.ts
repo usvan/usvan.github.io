@@ -55,15 +55,13 @@ export interface ProfileConfig {
 
 export const profileConfig: ProfileConfig = {
   avatar: defaultAvatar,
-  name: 'Your Name',
-  title: 'Your Role / Focus',
-  bio: 'Write a short self-introduction here. This content is used in About and article schema.',
-  location: 'Your City',
-  email: 'you@example.com',
-  githubProfileUrl: 'https://example.com',
+  name: 'Usvan',
+  title: 'Student at YISS',
+  bio: 'Born in the US in 2016 and now living in South Korea, I attend Yongsan International School of Seoul (YISS). I enjoy playing games, basketball, and foursquare.',
+  location: 'South Korea',
+  email: 'wooevan900@gmail.com',
+  githubProfileUrl: 'https://github.com/usvan',
   socials: [
-    { key: 'github', label: 'GitHub', url: 'https://example.com' },
-    { key: 'x', label: 'X', url: 'https://example.com' },
-    { key: 'website', label: 'Website', url: 'https://example.com' },
+    { key: 'github', label: 'GitHub', url: 'https://github.com/usvan' },
   ],
 };

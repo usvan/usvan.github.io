@@ -62,14 +62,14 @@ const hasPosts = page.total > 0;
 const blogHero = heroConfig.blog;
 const pageTitle =
   !hasPosts || page.currentPage === 1
-    ? `博客 | ${siteTitle}`
-    : `博客 - 第 ${page.currentPage} 页 | ${siteTitle}`;
+    ? `Blog | ${siteTitle}`
+    : `Blog - Page ${page.currentPage} | ${siteTitle}`;
 const pageDescription =
   !hasPosts
-    ? '当前模板未附带文章内容，你可以在 src/content/blog/ 中添加 Markdown 后自动生成列表。'
+    ? 'No posts are included yet. Add Markdown files to src/content/blog/ to generate the list.'
     : page.currentPage === 1
-    ? `按发布时间倒序浏览全部 ${page.total} 篇文章。`
-    : `博客归档第 ${page.currentPage} 页（共 ${page.lastPage} 页），收录 ${page.total} 篇文章。`;
+    ? `Browse all ${page.total} posts in reverse chronological order.`
+    : `Blog archive page ${page.currentPage} of ${page.lastPage}, containing ${page.total} posts.`;
 const shouldNoindex = page.currentPage > 1;
 const canonicalPath = getBlogPagePath(page.currentPage);
 const canonicalURL = new URL(canonicalPath, siteURL);
@@ -426,10 +426,10 @@ if (last > 1) paginationList.push(last);
   <ArchiveCard
     variant="blog"
     number={`Page ${page.currentPage}`}
-    title="所有文章"
+    title="All posts"
     intro={hasPosts
-      ? `这里收录了所有的 ${page.total} 篇文章 (第 ${page.currentPage} / ${page.lastPage} 页)`
-      : '当前没有文章内容。请在 src/content/blog/ 添加 .md/.mdx 文件后重新构建。'}
+      ? `This archive contains ${page.total} posts (page ${page.currentPage} / ${page.lastPage})`
+      : 'There is no post content. Add .md or .mdx files to src/content/blog/ and rebuild.'}
   >
 
         <div class="blog-posts-list">
@@ -453,7 +453,7 @@ if (last > 1) paginationList.push(last);
             ))
           ) : (
             <p class="blog-post-excerpt" style="text-align:center;padding:1.5em 0;">
-              暂无文章。请在 <code>src/content/blog/</code> 添加内容后再查看此页。
+              No posts yet. Add content to <code>src/content/blog/</code> and revisit this page.
             </p>
           )}
         </div>

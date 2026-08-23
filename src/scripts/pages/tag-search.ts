@@ -97,7 +97,7 @@ export class TagSearchController {
 	constructor(private readonly root: Document, private readonly mode: SearchMode) {
 		const input = root.querySelector<HTMLInputElement>('#tag-search');
 		const list = root.querySelector<HTMLElement>('#posts-list');
-		if (!input || !list) throw new Error('标签搜索界面结构不完整');
+			if (!input || !list) throw new Error('Tag search interface is incomplete');
 		this.input = input;
 		this.list = list;
 		this.tagPills = Array.from(root.querySelectorAll<HTMLElement>('.tag-pill'));
@@ -178,7 +178,7 @@ export class TagSearchController {
 			this.renderInitialCards(true);
 			return;
 		}
-		this.articleStatus && (this.articleStatus.textContent = '正在搜索文章…');
+			this.articleStatus && (this.articleStatus.textContent = 'Searching posts...');
 		this.timer = window.setTimeout(() => void this.searchArticles(this.query), SEARCH_DEBOUNCE_MS);
 	}
 
@@ -290,7 +290,7 @@ export class TagSearchController {
 			button.className = `page-btn ${page === this.currentPage ? 'active' : ''}`;
 			button.dataset.page = String(page);
 			button.textContent = String(page);
-			button.setAttribute('aria-label', `第 ${page} 页`);
+			button.setAttribute('aria-label', `Page ${page}`);
 			button.setAttribute('aria-current', page === this.currentPage ? 'page' : 'false');
 			this.applyPaginationScope(button);
 			this.pageNumbers!.append(button);
@@ -320,16 +320,16 @@ export class TagSearchController {
 	}
 
 	private updateArticleState(count: number, isSearch: boolean) {
-		if (this.postsCount) this.postsCount.textContent = isSearch ? `找到 ${count} 篇相关文章` : `共 ${count} 篇`;
-		if (this.articleStatus) this.articleStatus.textContent = isSearch ? `已按相关度排序` : '';
+		if (this.postsCount) this.postsCount.textContent = isSearch ? `Found ${count} related posts` : `${count} posts`;
+		if (this.articleStatus) this.articleStatus.textContent = isSearch ? 'Sorted by relevance' : '';
 		if (this.emptyState) this.emptyState.style.display = count === 0 ? 'flex' : 'none';
-		if (this.emptyMessage) this.emptyMessage.textContent = isSearch ? '未找到相关文章' : '暂无匹配文章';
+		if (this.emptyMessage) this.emptyMessage.textContent = isSearch ? 'No related posts found' : 'No matching posts';
 	}
 
 	private renderSearchError(error: unknown) {
 		this.renderInitialCards();
-		const message = error instanceof Error ? error.message : '全文搜索暂不可用';
-		if (this.articleStatus) this.articleStatus.textContent = `${message}，请重试`;
+		const message = error instanceof Error ? error.message : 'Full-text search is unavailable';
+		if (this.articleStatus) this.articleStatus.textContent = `${message}. Please retry.`;
 	}
 
 	private renderTagMatches() {
@@ -345,7 +345,7 @@ export class TagSearchController {
 			if (matches) visibleCount++;
 			highlightTagName(pill, query);
 		});
-		if (this.tagStatus) this.tagStatus.textContent = query ? (visibleCount ? `匹配 ${visibleCount} 个标签` : '未找到匹配的标签') : '';
+		if (this.tagStatus) this.tagStatus.textContent = query ? (visibleCount ? `${visibleCount} matching tags` : 'No matching tags') : '';
 	}
 
 	private handleTagClick(event: Event, pill: HTMLElement) {
@@ -383,7 +383,7 @@ export class TagSearchController {
 			const isActive = isAll ? !this.activeTag : pill.dataset.tag === this.activeTag;
 			pill.classList.toggle('active-tag', isActive);
 		});
-		if (this.activeTagTitle) this.activeTagTitle.textContent = this.activeTag ? `# ${this.activeTag}` : '所有文章';
+		if (this.activeTagTitle) this.activeTagTitle.textContent = this.activeTag ? `# ${this.activeTag}` : 'All posts';
 	}
 }
 
