@@ -62,14 +62,14 @@ const hasPosts = page.total > 0;
 const blogHero = heroConfig.blog;
 const pageTitle =
   !hasPosts || page.currentPage === 1
-    ? `Blog | ${siteTitle}`
-    : `Blog - Page ${page.currentPage} | ${siteTitle}`;
+    ? `Posts | ${siteTitle}`
+    : `Posts - Page ${page.currentPage} | ${siteTitle}`;
 const pageDescription =
   !hasPosts
     ? 'No posts are included yet. Add Markdown files to src/content/blog/ to generate the list.'
     : page.currentPage === 1
     ? `Browse all ${page.total} posts in reverse chronological order.`
-    : `Blog archive page ${page.currentPage} of ${page.lastPage}, containing ${page.total} posts.`;
+    : `Posts page ${page.currentPage} of ${page.lastPage}, containing ${page.total} posts.`;
 const shouldNoindex = page.currentPage > 1;
 const canonicalPath = getBlogPagePath(page.currentPage);
 const canonicalURL = new URL(canonicalPath, siteURL);
